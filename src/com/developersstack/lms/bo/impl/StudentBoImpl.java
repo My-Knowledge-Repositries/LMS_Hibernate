@@ -7,9 +7,11 @@ import com.developersstack.lms.dto.StudentDto;
 import com.developersstack.lms.entity.Student;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StudentBoImpl implements StudentBo {
-    private final StudentDao studentDao= DaoFactory.getInstance().getDao(DaoFactory.DaoType.STUDENT);
+    private final StudentDao studentDao = DaoFactory.getInstance().getDao(DaoFactory.DaoType.STUDENT);
 
     @Override
     public void saveStudent(StudentDto dto) throws SQLException, ClassNotFoundException {
@@ -17,5 +19,17 @@ public class StudentBoImpl implements StudentBo {
         student.setName(dto.getName());
         student.setContact(dto.getContact());
         studentDao.save(student);
+    }
+
+    @Override
+    public List<StudentDto> findAll() throws SQLException, ClassNotFoundException {
+        ArrayList<StudentDto> dtos = new ArrayList<>();
+        for (Student s : studentDao.findAll()) {
+            StudentDto studentDto = new StudentDto(s.getId(), s.getName(), s.getContact());
+            studentDto.setBooks(s.getBooks());
+            studentDto.setLaptop(s.getLaptop());
+            dtos.add(studentDto);
+        }
+        return dtos;
     }
 }
