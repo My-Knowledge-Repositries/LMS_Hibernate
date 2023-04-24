@@ -5,6 +5,7 @@ import com.developersstack.lms.dao.DaoFactory;
 import com.developersstack.lms.dao.custom.StudentDao;
 import com.developersstack.lms.dto.StudentDto;
 import com.developersstack.lms.entity.Student;
+import javassist.NotFoundException;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -31,5 +32,19 @@ public class StudentBoImpl implements StudentBo {
             dtos.add(studentDto);
         }
         return dtos;
+    }
+
+    @Override
+    public void deleteStudentById(long id) throws SQLException, ClassNotFoundException {
+        studentDao.delete(id);
+    }
+
+    @Override
+    public void updateStudent(StudentDto dto) throws SQLException, ClassNotFoundException, NotFoundException {
+        Student student = new Student();
+        student.setId(dto.getId());
+        student.setName(dto.getName());
+        student.setContact(dto.getContact());
+        studentDao.update(student);
     }
 }

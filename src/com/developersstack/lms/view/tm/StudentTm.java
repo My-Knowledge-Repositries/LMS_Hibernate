@@ -3,26 +3,28 @@ package com.developersstack.lms.view.tm;
 import javafx.scene.control.Button;
 
 public class StudentTm {
-    private String studentId;
+    private long studentId;
     private String studentName;
     private String contactNumber;
-    private Button Options;
+    private Button deleteBtn;
+    private Button seeMoreBtn;
 
     public StudentTm() {
     }
 
-    public StudentTm(String studentId, String studentName, String contactNumber, Button options) {
+    public StudentTm(long studentId, String studentName, String contactNumber, Button deleteBtn, Button seeMoreBtn) {
         this.studentId = studentId;
         this.studentName = studentName;
         this.contactNumber = contactNumber;
-        Options = options;
+        this.deleteBtn = deleteBtn;
+        this.seeMoreBtn = seeMoreBtn;
     }
 
-    public String getStudentId() {
+    public long getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(String studentId) {
+    public void setStudentId(long studentId) {
         this.studentId = studentId;
     }
 
@@ -42,11 +44,19 @@ public class StudentTm {
         this.contactNumber = contactNumber;
     }
 
-    public Button getOptions() {
-        return Options;
+    public Button getDeleteBtn() {
+        return deleteBtn;
     }
 
-    public void setOptions(Button options) {
-        Options = options;
+    public void setDeleteBtn(Button deleteBtn) {
+        this.deleteBtn = deleteBtn;
+    }
+
+    public Button getSeeMoreBtn() {
+        return seeMoreBtn;
+    }
+
+    public void setSeeMoreBtn(Button seeMoreBtn) {
+        this.seeMoreBtn = seeMoreBtn;
     }
 }
