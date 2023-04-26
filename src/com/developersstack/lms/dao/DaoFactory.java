@@ -1,7 +1,8 @@
 package com.developersstack.lms.dao;
 
-import com.developersstack.lms.dao.custom.impl.LaptopDaoImpl;
-import com.developersstack.lms.dao.custom.impl.StudentDaoImpl;
+import com.developersstack.lms.dao.custom.impl.ProgramDaoImpl;
+import lk.developersstack.lms.dao.custom.impl.LaptopDaoImpl;
+import lk.developersstack.lms.dao.custom.impl.StudentDaoImpl;
 
 public class DaoFactory {
     private static DaoFactory daoFactory;
@@ -24,7 +25,7 @@ public class DaoFactory {
             case LAPTOP:
                 return (T) new LaptopDaoImpl();
             case PROGRAM:
-                return null;
+                return (T) new ProgramDaoImpl();
             default:
                 return null;
         }

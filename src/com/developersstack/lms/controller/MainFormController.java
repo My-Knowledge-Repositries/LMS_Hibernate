@@ -1,7 +1,9 @@
 package com.developersstack.lms.controller;
 
 import com.developersstack.lms.bo.BoFactory;
+import com.developersstack.lms.bo.custom.LaptopBo;
 import com.developersstack.lms.bo.custom.StudentBo;
+import com.developersstack.lms.dto.CreateLaptopDto;
 import com.developersstack.lms.dto.StudentDto;
 import com.developersstack.lms.view.tm.StudentTm;
 import javafx.collections.FXCollections;
@@ -20,6 +22,7 @@ public class MainFormController {
     public TextField txtContact;
 
     private final StudentBo studentBo = BoFactory.getInstance().getBo(BoFactory.BoType.STUDENT);
+    private final LaptopBo laptopBo = BoFactory.getInstance().getBo(BoFactory.BoType.LAPTOP);
     public TableView<StudentTm> tblStudent;
     public TableColumn colStuId;
     public TableColumn colStuName;
@@ -133,5 +136,23 @@ public class MainFormController {
                 new Alert(Alert.AlertType.ERROR, "Try Again").show();
             }
         }
+    }
+
+    public void btnSaveLaptopOnAction(ActionEvent actionEvent) {
+        try {
+            laptopBo.saveLaptop(
+                    new CreateLaptopDto(
+                            cmbStudent.getValue(),
+                            txtLaptop.getText()
+                    )
+            );
+            new Alert(Alert.AlertType.INFORMATION, "Laptop Saved").show();
+            loadAllLaptops();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, "Try Again").show();
+        }
+    }
+
+    private void loadAllLaptops() {
     }
 }
