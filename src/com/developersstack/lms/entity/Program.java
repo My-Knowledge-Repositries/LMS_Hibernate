@@ -13,31 +13,30 @@ public class Program {
     private String title;
     private int credit;
 
-    @ManyToMany
-    @JoinTable(
-            name = "registration",
-            joinColumns = @JoinColumn(name = "program_id"),
-            inverseJoinColumns = @JoinColumn(name = "student_id")
-    )
-    private List<Student> students=
+    //--------------mapping--------------
+
+
+    @OneToMany(mappedBy = "program")
+    private List<Registration> registrations =
             new ArrayList<>();
+
+    //--------------mapping--------------
 
     public Program() {
     }
 
-    public Program(long id, String title, int credit, List<Student> students) {
+    public Program(long id, String title, int credit) {
         this.id = id;
         this.title = title;
         this.credit = credit;
-        this.students = students;
     }
 
-    public List<Student> getStudents() {
-        return students;
+    public List<Registration> getRegistrations() {
+        return registrations;
     }
 
-    public void setStudents(List<Student> students) {
-        this.students = students;
+    public void setRegistrations(List<Registration> registrations) {
+        this.registrations = registrations;
     }
 
     public long getId() {

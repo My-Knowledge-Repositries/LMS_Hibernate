@@ -13,6 +13,7 @@ public class Student {
     private String name;
     private String contact;
 
+    //--------------mapping--------------
     @OneToOne(
             cascade = CascadeType.ALL,
             mappedBy = "student",
@@ -26,20 +27,19 @@ public class Student {
     )
     private List<Book> books = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "students")
-    private List<Program> programs =
+    @OneToMany(mappedBy = "student")
+    private List<Registration> registrations =
             new ArrayList<>();
+
+    //--------------mapping--------------
 
     public Student() {
     }
 
-    public Student(long id, String name, String contact, Laptop laptop, List<Book> books, List<Program> programs) {
+    public Student(long id, String name, String contact) {
         this.id = id;
         this.name = name;
         this.contact = contact;
-        this.laptop = laptop;
-        this.books = books;
-        this.programs = programs;
     }
 
     public List<Book> getBooks() {
@@ -50,12 +50,12 @@ public class Student {
         this.books = books;
     }
 
-    public List<Program> getPrograms() {
-        return programs;
+    public List<Registration> getRegistrations() {
+        return registrations;
     }
 
-    public void setPrograms(List<Program> programs) {
-        this.programs = programs;
+    public void setRegistrations(List<Registration> registrations) {
+        this.registrations = registrations;
     }
 
     public Laptop getLaptop() {
