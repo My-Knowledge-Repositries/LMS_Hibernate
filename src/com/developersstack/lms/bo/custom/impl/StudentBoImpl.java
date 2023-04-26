@@ -1,4 +1,4 @@
-package com.developersstack.lms.bo.impl;
+package com.developersstack.lms.bo.custom.impl;
 
 import com.developersstack.lms.bo.custom.StudentBo;
 import com.developersstack.lms.dao.DaoFactory;

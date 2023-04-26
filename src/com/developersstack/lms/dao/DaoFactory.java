@@ -1,5 +1,6 @@
 package com.developersstack.lms.dao;
 
+import com.developersstack.lms.dao.custom.impl.LaptopDaoImpl;
 import com.developersstack.lms.dao.custom.impl.StudentDaoImpl;
 
 public class DaoFactory {
@@ -21,7 +22,7 @@ public class DaoFactory {
             case BOOK:
                 return null;
             case LAPTOP:
-                return null;
+                return (T) new LaptopDaoImpl();
             case PROGRAM:
                 return null;
             default:

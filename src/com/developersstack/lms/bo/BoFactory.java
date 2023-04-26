@@ -1,6 +1,6 @@
 package com.developersstack.lms.bo;
 
-import com.developersstack.lms.bo.impl.StudentBoImpl;
+import com.developersstack.lms.bo.custom.impl.StudentBoImpl;
 
 public class BoFactory {
     private static BoFactory boFactory;

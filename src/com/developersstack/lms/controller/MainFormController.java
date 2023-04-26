@@ -28,6 +28,13 @@ public class MainFormController {
     public TableColumn colDelete;
 
     public Button btnStudentSave;
+    public TextField txtLaptop;
+    public TextField txtSearch;
+    public TableView tblLaptop;
+    public TableColumn colLapId;
+    public TableColumn colBrand;
+    public TableColumn colLapDelete;
+    public ComboBox<Long> cmbStudent;
 
     public void initialize() throws SQLException, ClassNotFoundException {
         colStuId.setCellValueFactory(new PropertyValueFactory<>("studentId"));
@@ -36,6 +43,7 @@ public class MainFormController {
         colSeeMore.setCellValueFactory(new PropertyValueFactory<>("seeMoreBtn"));
         colDelete.setCellValueFactory(new PropertyValueFactory<>("deleteBtn"));
         loadAllStudents();
+        loadAllStudentsForLaptopSection();
 
         //------------------------Listener---------------------
         tblStudent.getSelectionModel()
@@ -50,6 +58,16 @@ public class MainFormController {
                 });
         //------------------------Listener---------------------
     }
+
+    private void loadAllStudentsForLaptopSection() throws SQLException, ClassNotFoundException {
+        ObservableList<Long> obList = FXCollections.observableArrayList();
+        for (StudentDto dto:studentBo.findAll()
+        ) {
+            obList.add(dto.getId());
+        }
+        cmbStudent.setItems(obList);
+    }
+
 
     private StudentTm selectedStudentTm = null;
 
@@ -115,7 +133,5 @@ public class MainFormController {
                 new Alert(Alert.AlertType.ERROR, "Try Again").show();
             }
         }
-
-
     }
 }
