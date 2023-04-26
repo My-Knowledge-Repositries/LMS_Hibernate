@@ -1,5 +1,7 @@
 package com.developersstack.lms.dto;
 
+import com.developersstack.lms.entity.Program;
+
 public class ProgramDto {
     private String title;
     private int credit;
@@ -27,4 +29,5 @@ public class ProgramDto {
     public void setCredit(int credit) {
         this.credit = credit;
     }
+
 }

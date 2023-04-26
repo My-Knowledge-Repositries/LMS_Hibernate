@@ -1,12 +1,12 @@
 package com.developersstack.lms.bo.custom.impl;
 
 import com.developersstack.lms.bo.custom.ProgramBo;
-import lk.developersstack.lms.dao.DaoFactory;
-import lk.developersstack.lms.dao.custom.ProgramDao;
-import lk.developersstack.lms.dto.ProgramDto;
-import lk.developersstack.lms.entity.Program;
-
+import com.developersstack.lms.dao.DaoFactory;
+import com.developersstack.lms.dao.custom.ProgramDao;
+import com.developersstack.lms.dto.ProgramDto;
+import com.developersstack.lms.entity.Program;
 import java.sql.SQLException;
+import java.util.List;
 
 public class ProgramBoImpl implements ProgramBo {
     private final ProgramDao programDao = DaoFactory.getInstance().getDao(DaoFactory.DaoType.PROGRAM);
@@ -18,4 +18,10 @@ public class ProgramBoImpl implements ProgramBo {
         program.setCredit(dto.getCredit());
         programDao.save(program);
     }
+
+    @Override
+    public List<Long> findAllStudentIds() {
+        return programDao.findAllProgramIds();
+    }
+
 }
